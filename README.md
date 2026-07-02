@@ -8,3 +8,4 @@ Personal Codex skills and plugins approved for public sharing.
 - `doc-writting-skill`
 - `paper-brieding-skill`
 - `brainstorming`
+- `handoff`
