@@ -1,6 +1,6 @@
 # Writing Standards
 
-Use these standards when writing or revising Notion documents.
+Use these standards when writing or revising Doc documents.
 
 ## Reader Contract
 Every page should make four things clear:

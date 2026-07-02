@@ -1,6 +1,6 @@
-# Notion Block Patterns
+# Doc Block Patterns
 
-Use Notion blocks to lower reading cost. Do not add structure that has no job.
+Use Doc blocks to lower reading cost. Do not add structure that has no job.
 
 ## Block Selection
 | Need | Preferred block |

@@ -1,6 +1,6 @@
 # Revision Protocol
 
-Use this when improving an existing Notion page.
+Use this when improving an existing Doc page.
 
 ## Intake
 Fetch the current page and identify:
@@ -23,7 +23,7 @@ Fetch the current page and identify:
 - Preserve source links and page relations.
 - Do not delete appendices, child pages, or databases without explicit user approval.
 - Keep unresolved questions visible.
-- When editing in Notion, use exact old/new replacement strings from the fetched page.
+- When editing in Doc, use exact old/new replacement strings from the fetched page.
 
 ## Change Summary
 For substantial edits, add or report:

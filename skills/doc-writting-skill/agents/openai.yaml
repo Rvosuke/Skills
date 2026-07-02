@@ -1,6 +1,6 @@
 interface:
-  display_name: "Notion Writing"
-  short_description: "Write structured, evidence-aware Notion docs"
-  icon_small: "./assets/notion-small.svg"
-  icon_large: "./assets/notion.png"
-  default_prompt: "Use $notion-writing-skill to plan, draft, revise, and publish a structured Notion document."
+  display_name: "Doc Writing"
+  short_description: "Write structured, evidence-aware documents"
+  icon_small: "./assets/doc-small.svg"
+  icon_large: "./assets/doc.png"
+  default_prompt: "Use $doc-writting-skill to plan, draft, revise, and publish a structured Doc document."

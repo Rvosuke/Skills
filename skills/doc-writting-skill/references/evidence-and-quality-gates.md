@@ -33,7 +33,7 @@ When the user provides source material, base factual content on that material. U
 If the source material does not cover a needed point, mark the gap instead of filling it from memory.
 
 ## Publish Gate
-Before creating or updating a Notion page, verify:
+Before creating or updating a Doc page, verify:
 - The first section states the purpose or takeaway.
 - The intended audience is clear from title, intro, or context.
 - Every important claim has an evidence status.
