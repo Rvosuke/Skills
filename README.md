@@ -9,3 +9,4 @@ Personal Codex skills and plugins approved for public sharing.
 - `paper-brieding-skill`
 - `brainstorming`
 - `handoff`
+- `weekly-report-skill`
