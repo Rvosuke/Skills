@@ -7,6 +7,25 @@ description: Write polished research-paper reports for lab notes, Notion pages, 
 
 Use when the user needs a durable written report from a paper briefing.
 
+## Default Output
+
+Unless the user explicitly requests plain text, Markdown-only, Notion-only, or
+another format, produce a standalone HTML rich-text report. Do not return a
+pure-text report as the default.
+
+The HTML report should be self-contained and readable when opened directly in a
+browser:
+
+- Include `<!doctype html>`, `<html>`, `<head>`, and `<body>`.
+- Put all CSS in a `<style>` block in the same file; do not rely on external
+  assets unless the user provides them.
+- Use semantic sections, headings, tables, callout boxes, and concise lists to
+  make the report scannable.
+- Preserve source-grounded wording: every major claim should be tied to the
+  paper's stated evidence, figure, table, ablation, or experiment when possible.
+- If the paper source or evidence is incomplete, mark the boundary clearly
+  inside the report instead of filling gaps with confident guesses.
+
 ## Report Shape
 
 Default to a concise research note:
@@ -23,6 +42,9 @@ Default to a concise research note:
 
 ## Style
 
+- Default visual style: clean academic briefing page, with a readable max-width,
+  clear hierarchy, subtle borders, highlighted key takeaways, and print-friendly
+  colors.
 - Prefer dense, scannable prose over marketing language.
 - Use tables only when comparison is the clearest form.
 - Avoid filler like "this paper presents a novel approach" unless the novelty is

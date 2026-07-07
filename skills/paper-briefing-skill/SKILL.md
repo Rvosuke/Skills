@@ -1,9 +1,9 @@
 ---
-name: paper-brieding-skill
-description: "Route paper-reading requests through reading, report writing, teaching, critique, or research-writing workflows."
+name: paper-briefing-skill
+description: "Route paper-reading requests through reading, HTML rich-text report writing, teaching, critique, or research-writing workflows."
 ---
 
-# Paper Brieding Skill
+# Paper Briefing Skill
 
 Use this as the entrypoint for paper-reading work. A paper briefing is not just
 a summary: it turns a paper into material that can be understood, reported,
@@ -15,8 +15,11 @@ Choose the smallest workflow that fits the request:
 
 - Reading: read `references/paper-reader.md` when the user wants to understand a
   paper, extract contributions, map methods, or inspect figures and experiments.
-- Report: read `references/paper-report.md` when the user wants a Markdown,
-  Notion, lab-note, or group-meeting report.
+- Report: read `references/paper-report.md` when the user wants a paper
+  interpretation report, lab-note, group-meeting report, Notion page, Markdown,
+  or HTML-rich briefing. Unless the user explicitly asks for plain text,
+  Markdown-only, or another format, default to a standalone HTML rich-text
+  report.
 - Teaching: read `references/paper-teacher.md` when the user wants an oral
   explanation, talk track, slide outline, Q&A prep, or a beginner-friendly
   walkthrough.
@@ -55,7 +58,9 @@ state the source boundary.
 
 ## Default Bundle
 
-When the user says "paper briefing" without more detail, return:
+When the user says "paper briefing" without more detail, automatically produce
+one standalone HTML rich-text report by following `references/paper-report.md`.
+The report must include:
 
 1. One-paragraph thesis.
 2. Contribution map.

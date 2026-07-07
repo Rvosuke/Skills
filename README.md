@@ -6,7 +6,7 @@ Personal Codex skills and plugins approved for public sharing.
 
 - `grill-me`
 - `doc-writting-skill`
-- `paper-brieding-skill`
+- `paper-briefing-skill`
 - `brainstorming`
 - `handoff`
 - `weekly-report-skill`

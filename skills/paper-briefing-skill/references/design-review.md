@@ -1,4 +1,4 @@
-# Paper Brieding Skill Design Review
+# Paper Briefing Skill Design Review
 
 This note records the first-pass review that motivated the suite structure.
 
@@ -35,7 +35,7 @@ This note records the first-pass review that motivated the suite structure.
 
 ## Suite Shape
 
-- `paper-brieding-skill`: entrypoint and task routing.
+- `paper-briefing-skill`: entrypoint and task routing.
 - `paper-reader`: source-grounded understanding.
 - `paper-report`: durable written report.
 - `paper-teacher`: oral explanation and Q&A prep.
