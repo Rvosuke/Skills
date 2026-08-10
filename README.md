@@ -10,3 +10,4 @@ Personal Codex skills and plugins approved for public sharing.
 - `brainstorming`
 - `handoff`
 - `weekly-report-skill`
+- `academic-paper-zh-html-translator`
