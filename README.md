@@ -8,5 +8,4 @@ Personal skills for AI coding agents (Codex / TraeCode). Each skill lives under 
 - `ml-coding` — Conventions, diagnostic discipline, and review criteria for machine learning research code (training loops, distributed training, experiments, ablations).
 - `academic-paper-zh-html-translator` — Translate arXiv HTML papers into offline Chinese HTML with structural and visual auditing.
 - `handoff` — Produce zero-context handoff documentation for long-running projects.
-- `brainstorming` — Structured brainstorming.
 - `grill-me` — Challenge and stress-test an idea or plan.
