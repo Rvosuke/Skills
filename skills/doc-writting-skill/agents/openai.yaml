@@ -1,6 +1,0 @@
-interface:
-  display_name: "Doc Writing"
-  short_description: "Write structured, evidence-aware documents"
-  icon_small: "./assets/doc-small.svg"
-  icon_large: "./assets/doc.png"
-  default_prompt: "Use $doc-writting-skill to plan, draft, revise, and publish a structured Doc document."
