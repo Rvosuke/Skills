@@ -1,6 +1,6 @@
 ---
 name: ml-coding
-description: Conventions and diagnostic discipline for machine learning research code (PyTorch, training loops, distributed training, experiments, ablations). Use when writing or debugging 科研/训练代码, setting up experiments, diagnosing training failures or silent-wrong results, or inheriting and rewriting an existing research codebase.
+description: Write, debug, and review ML research code. Use for Research/Training Code — training loops, distributed training, experiments, ablations, and diagnosing silent-wrong results.
 ---
 
 # ML Coding
@@ -16,6 +16,7 @@ Write and diagnose machine learning research the way a lab does: let errors surf
 - No `hasattr`/`getattr` probe chains for structures you know. Access the real path; a missing field should raise KeyError naturally. Avoid `.get(key, default)` for fields that must exist, and never stack fallbacks — they turn a missing field into a silently wrong value.
 - No default parameter values inside functions. Defaults live only in config, passed explicitly from outside. Internal defaults hide the effective value, and a missed config update silently uses the wrong one.
 - Design decisions go in docs and comments, not runtime assertions.
+- Research code is still for humans to read (collaborators, future you). Name things for what they mean and keep interfaces ordered; let comments carry the design intent that the deliberate absence of assertions would otherwise leave undocumented. Comments explain why a non-obvious choice exists, not what the next line literally does.
 
 ## Reuse before building
 
@@ -37,6 +38,20 @@ For distributed deadlocks and silent stalls, see [references/distributed-trainin
 - State the scope of every conclusion: "X verified" becomes "part A of X verified, part B not checked." Treating a local check as global is harder to self-catch than speculation.
 - Identifying a root cause is not fixing it. Write it down, then change the plan immediately — otherwise all subsequent data rests on a known-wrong premise.
 - Distinguish hyperparameters from implementation details. Numerically transparent switches (e.g. gradient checkpointing recomputes activations, does not change gradients) are not hyperparameters. "Align with baseline" must not freeze implementation details, or it rejects the change that actually fixes the problem.
+
+## Reviewing research code
+
+When reviewing a diff or PR, in addition to correctness, check the failure modes specific to research code — the ones that do not crash but invalidate conclusions:
+
+- Collectives: every rank must hit the same `dist.*` calls in the same order; flag any collective gated by a rank-local condition.
+- Silent-wrong paths: `.get(key, default)` / `hasattr` probes on fields that should exist, internal function defaults that shadow config values, silently swallowed exceptions — each can hide a misconfiguration as a plausible result.
+- Subclassing: parent methods overridden without the parts that preserve cross-rank or accumulator state (see [references/distributed-training.md](references/distributed-training.md)).
+- Framework extension points: flag monkey-patching of official methods where a callback/hook exists.
+- Leftover debug scaffolding: prints, counters, `--contract-only` switches left in the training path.
+- Defensive code: input validation / custom error messages for paths only we call — remove in favor of natural errors.
+- Experiments: confirm ablations change only the intended variable; gradient-checkpointing-style switches are implementation details, not hyperparameters, and must not be frozen across comparisons.
+
+Report findings with measured evidence over speculation, and distinguish "will produce wrong data" (blocking) from style nits.
 
 ## Documentation for long-running projects
 
