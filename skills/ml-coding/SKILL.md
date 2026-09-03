@@ -28,34 +28,15 @@ For distributed deadlocks and silent stalls, see [references/distributed-trainin
 
 ## Diagnosis discipline
 
-- Blocking conclusions ("data is untrustworthy / must fix first / cannot proceed") require a real measurement, not code reading or reasoning. Before making one, run the smallest experiment that could falsify it.
-- Run the controlled comparison before constructing a mechanism explanation. Isolate, snapshot-diff, statically enumerate — each takes minutes. Once a hypothesis exists, evidence tends to be used to support it rather than test it.
-- Simulation is not measurement. Tables produced with assumed parameters have no evidential value. Numbers used as evidence must come from observing the real thing; label each as measured or inferred.
-- An order-of-magnitude deviation is itself a signal — question the explanatory model, do not use it to explain the deviation away.
-- Be extra wary when a ready theory is in hand. Existing docs/experience make you skip verification; confirm the theory's preconditions actually hold here.
-- Read code through to its side effects. If a branch omits something, check whether it is compensated elsewhere (a variable mutated, a later loop completing it) before concluding it is missing.
-- Distinguish hypothesis from conclusion in tone. Mark unverified candidates as such; after falsification, retract explicitly and leave a "falsified, do not revert" note.
-- State the scope of every conclusion: "X verified" becomes "part A of X verified, part B not checked." Treating a local check as global is harder to self-catch than speculation.
-- Identifying a root cause is not fixing it. Write it down, then change the plan immediately — otherwise all subsequent data rests on a known-wrong premise.
-- Distinguish hyperparameters from implementation details. Numerically transparent switches (e.g. gradient checkpointing recomputes activations, does not change gradients) are not hyperparameters. "Align with baseline" must not freeze implementation details, or it rejects the change that actually fixes the problem.
+When diagnosing silent-wrong results or debugging complex failures, load [references/diagnosis-discipline.md](references/diagnosis-discipline.md).
 
 ## Reviewing research code
 
-When reviewing a diff or PR, in addition to correctness, check the failure modes specific to research code — the ones that do not crash but invalidate conclusions:
-
-- Collectives: every rank must hit the same `dist.*` calls in the same order; flag any collective gated by a rank-local condition.
-- Silent-wrong paths: `.get(key, default)` / `hasattr` probes on fields that should exist, internal function defaults that shadow config values, silently swallowed exceptions — each can hide a misconfiguration as a plausible result.
-- Subclassing: parent methods overridden without the parts that preserve cross-rank or accumulator state (see [references/distributed-training.md](references/distributed-training.md)).
-- Framework extension points: flag monkey-patching of official methods where a callback/hook exists.
-- Leftover debug scaffolding: prints, counters, `--contract-only` switches left in the training path.
-- Defensive code: input validation / custom error messages for paths only we call — remove in favor of natural errors.
-- Experiments: confirm ablations change only the intended variable; gradient-checkpointing-style switches are implementation details, not hyperparameters, and must not be frozen across comparisons.
-
-Report findings with measured evidence over speculation, and distinguish "will produce wrong data" (blocking) from style nits.
+When reviewing a diff, a PR, or a delegated agent's completed work, load [references/reviewing-research-code.md](references/reviewing-research-code.md).
 
 ## Documentation for long-running projects
 
-- Docs are external memory, not a status report. Once a conclusion is confirmed, mark it "(已定)" with supporting reasoning; context is lost, docs are not. Read docs before asserting something is undecided.
+- Docs are external memory, not a status report. Once a conclusion is confirmed, mark it "(Confirmed)" with supporting reasoning; context is lost, docs are not. Read docs before asserting something is undecided.
 - When adding a conclusion, simultaneously fix old content: scan the same doc for stale values/"TBD", check other docs that repeat it, update indexes/maps. Add-without-fix makes the doc self-contradictory.
 - Verify cross-references; section numbers drift. After edits, script-check "existing sections vs referenced sections" and link targets.
 - Move decided items out of the open-questions list immediately.
